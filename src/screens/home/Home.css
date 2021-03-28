@@ -9,3 +9,9 @@
 .form-control-login {
     width: 70%;
 }
+.dispBlock {
+    display: block;
+}
+.dispNone {
+    display: none;
+}

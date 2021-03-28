@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 function TabContainer(props) {
@@ -23,7 +24,10 @@ class Home extends Component {
         super();
         this.state = {
             isModalOpen: false,
-            value: 0
+            value: 0,
+            formHelperTextClassname: 'dispNone',
+            userName: '',
+            password: ''
         };
     }
 
@@ -36,6 +40,20 @@ class Home extends Component {
     }
     tabChangeHandler = (event, value) => {
         this.setState({isModalOpen: true, value: value});
+    }
+    loginBtnClickHandler = () => {
+        if(this.state.userName === '') {
+            this.setState({formHelperTextClassname: 'dispBlock'});
+        }
+        else {
+            this.setState({formHelperTextClassname: 'dispNone'});
+        }
+    }
+    userNameInputFieldChangeHandler = (e) => {
+        this.setState({userName: e.target.value});
+    }
+    passwordInputFieldChangeHandler =(e) => {
+        this.setState({password: e.target.value});
     }
 
     render() {
@@ -63,17 +81,19 @@ class Home extends Component {
                 <div className="form-control-container">
             <FormControl className="form-control-login" required>
                 <InputLabel htmlFor="userName">Username</InputLabel>
-                <Input id="userName" type="text"/>
+                <Input id="userName" type="text" onChange={this.userNameInputFieldChangeHandler}/>
+                <FormHelperText className={this.state.formHelperTextClassname}>required</FormHelperText>
             </FormControl>
             </div>
            <div className="form-control-container">
            <FormControl className="form-control-login" required>
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input id="password" type="password"/>
+            <Input id="password" type="password" onChange={this.passwordInputFieldChangeHandler}/>
+            <FormHelperText className={this.state.formHelperTextClassname}>required</FormHelperText>
             </FormControl>
            </div>
            <div className="form-control-container">
-           <Button variant="contained" color="primary">LOGIN</Button>
+           <Button variant="contained" color="primary" onClick={this.loginBtnClickHandler}>LOGIN</Button>
            </div>
                 </div>}
         </TabContainer>
