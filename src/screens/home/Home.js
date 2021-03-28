@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 
 function TabContainer(props) {
@@ -70,6 +71,9 @@ class Home extends Component {
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input id="password" type="password"/>
             </FormControl>
+           </div>
+           <div className="form-control-container">
+           <Button variant="contained" color="primary">LOGIN</Button>
            </div>
         </TabContainer>
         </Modal>

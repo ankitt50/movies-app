@@ -4,8 +4,8 @@
     justify-content:stretch;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
 }
 .form-control-login {
     width: 70%;
-    padding: 20px;
 }
