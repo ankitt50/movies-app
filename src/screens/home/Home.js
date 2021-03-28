@@ -38,7 +38,6 @@ class Home extends Component {
         this.setState({isModalOpen: true, value: value});
     }
 
-
     render() {
 
         const customStyles = {
@@ -60,7 +59,8 @@ class Home extends Component {
             <Tab label="Register"/>
         </Tabs>
         <TabContainer>
-            <div className="form-control-container">
+            {this.state.value === 0 && <div>
+                <div className="form-control-container">
             <FormControl className="form-control-login" required>
                 <InputLabel htmlFor="userName">Username</InputLabel>
                 <Input id="userName" type="text"/>
@@ -75,6 +75,7 @@ class Home extends Component {
            <div className="form-control-container">
            <Button variant="contained" color="primary">LOGIN</Button>
            </div>
+                </div>}
         </TabContainer>
         </Modal>
         </div>
