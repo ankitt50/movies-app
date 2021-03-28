@@ -1,0 +1,11 @@
+.form-control-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:stretch;
+    align-items: center;
+    width: 100%;
+}
+.form-control-login {
+    width: 70%;
+    padding: 20px;
+}
