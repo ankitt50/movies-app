@@ -11,12 +11,26 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import moviesData from '../../common/movieData.js';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import { withStyles } from '@material-ui/core/styles';
+
 
 function TabContainer(props) {
     return (<Typography component="div" style={{padding:0}}>
         {props.children}
     </Typography>);
 }
+
+const styles = theme => (
+    {
+        gridListUpcomingMovies: {
+            flexWrap: 'nowrap',
+            transform: 'translateZ(0)'
+        },
+    }
+)
 
 class Home extends Component {
 
@@ -128,6 +142,8 @@ class Home extends Component {
 
     render() {
 
+        const { classes } = this.props;
+
         const customStyles = {
             content: {
                 top: '50%',
@@ -144,6 +160,14 @@ class Home extends Component {
             <div className="sub-heading-in-pink">
                 <h5 id="upcoming-movies-title">Upcoming Movies</h5>
             </div>
+                <GridList className={classes.gridListUpcomingMovies} cols={5}>
+                    {moviesData.map(movie => (
+                        <GridListTile key={movie.id}>
+                            <img src={movie.poster_url} alt={movie.title} />
+                            <GridListTileBar title={movie.title} />
+                        </GridListTile>
+                    ))}
+                </GridList>
             <Modal id="login-register-modal" ariaHideApp={false} isOpen={this.state.isModalOpen} contentLabel="Login" onRequestClose={this.closeModalHandler} style={customStyles}>
         <Tabs value={this.state.value} onChange={this.tabChangeHandler}>
             <Tab label="Login"/>
@@ -216,4 +240,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withStyles(styles)(Home);
