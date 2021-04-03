@@ -46,3 +46,18 @@
   ::-webkit-scrollbar-thumb:hover {
     background: grey;
   }
+
+  .movie-poster{
+      height: 100%;
+      width: auto;
+  }
+  .bottom-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+      width: 100%;
+  }
+  .movie-filter-card{
+      width: 30%;
+      margin: 10px;
+  }
