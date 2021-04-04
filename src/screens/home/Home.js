@@ -22,6 +22,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Checkbox, ListItemText, TextField } from '@material-ui/core';
 import artists from '../../common/artists';
+import ReactDOM from 'react-dom';
+import Details from '../details/Details';
 
 
 function TabContainer(props) {
@@ -139,6 +141,11 @@ class Home extends Component {
         }
     }
 
+
+    filterBtnClickHandler = () => {
+        console.log("aplly btn clicked");
+    }
+
     userNameInputFieldChangeHandler = (e) => {
         this.setState({ userName: e.target.value });
     }
@@ -156,6 +163,10 @@ class Home extends Component {
 
     artistsSelectHandler = (e) => {
         this.setState({artists: e.target.value});
+    }
+
+    movieClickHandler = (movieId) => {
+        ReactDOM.render(<Details movieId={movieId}/>, document.getElementById('root'));
     }
 
     registrationInputFieldChangeHandler = (e) => {
@@ -209,7 +220,7 @@ class Home extends Component {
             <div className="bottom-container">
                 <GridList className={classes.gridListReleasedMovies} cols={4}>
                     {moviesData.map(movie => (
-                        <GridListTile key={movie.id} className={classes.gridListTileReleasedMovies}>
+                        <GridListTile onClick={() => this.movieClickHandler(movie.id)} key={movie.id} className={classes.gridListTileReleasedMovies}>
                             <img src={movie.poster_url} alt={movie.title} className="movie-poster" />
                             <GridListTileBar title={movie.title} subtitle={<span>Release Date: {new Date(movie.release_date).toDateString()}</span>} />
                         </GridListTile>
@@ -275,6 +286,21 @@ class Home extends Component {
                             InputLabelProps= {{shrink: true}}
                             />
                         </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <TextField 
+                            id="releaseDateEnd"
+                            label="Release Date End"
+                            type= "date"
+                            defaultValue= ""
+                            InputLabelProps= {{shrink: true}}
+                            />
+                        </FormControl>
+                        <br/><br/>
+                        <FormControl className={classes.formControl}>
+                        <Button variant="contained" color="primary" onClick={this.filterBtnClickHandler}>APPLY</Button>
+                        </FormControl>
+                        
+                        
                     </CardContent>
                 </Card>
             </div>
