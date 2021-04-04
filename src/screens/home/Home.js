@@ -20,7 +20,8 @@ import CardContent from '@material-ui/core/CardContent';
 import genres from '../../common/genres';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Checkbox, ListItemText } from '@material-ui/core';
+import { Checkbox, ListItemText, TextField } from '@material-ui/core';
+import artists from '../../common/artists';
 
 
 function TabContainer(props) {
@@ -75,7 +76,8 @@ class Home extends Component {
             pswformHelperTextClassname: 'dispNone',
             contactformHelperTextClassname: 'dispNone',
             movieName: '',
-            genres: []
+            genres: [],
+            artists: []
         };
     }
 
@@ -150,6 +152,10 @@ class Home extends Component {
 
     genresSelectHandler = (e) => {
         this.setState({genres: e.target.value});
+    }
+
+    artistsSelectHandler = (e) => {
+        this.setState({artists: e.target.value});
     }
 
     registrationInputFieldChangeHandler = (e) => {
@@ -239,6 +245,35 @@ class Home extends Component {
                                     ))
                                 }
                             </Select>
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                        <InputLabel htmlFor="select-multiple-artist-checkbox">Artists</InputLabel>
+                            <Select
+                            multiple
+                            input={<Input id="select-multiple-artist-checkbox"/>}
+                            renderValue={selected => selected.join(',')}
+                            value={this.state.artists}
+                            onChange={this.artistsSelectHandler}
+                            >
+                                <MenuItem value="0">None</MenuItem>
+                                {
+                                    artists.map(artist => (
+                                        <MenuItem key={artist.id} value={artist.first_name +  " " +artist.last_name}>
+                                            <Checkbox checked={this.state.artists.indexOf(artist.first_name +  " " +artist.last_name) > -1} />
+                                            <ListItemText primary={artist.first_name +  " " +artist.last_name} />
+                                        </MenuItem>
+                                    ))
+                                }
+                            </Select>
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <TextField 
+                            id="releaseDateStart"
+                            label="Release Date Start"
+                            type= "date"
+                            defaultValue= ""
+                            InputLabelProps= {{shrink: true}}
+                            />
                         </FormControl>
                     </CardContent>
                 </Card>
