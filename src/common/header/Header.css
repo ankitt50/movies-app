@@ -5,6 +5,11 @@
     background-color: black;
     width: 100%;
 }
+.header-inner-right-div{
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
 #login-btn{
     margin: 20px;
     font-weight: bold;
@@ -19,4 +24,9 @@
  @keyframes app-logo-spin {
     from { transform: scaleX(-1); }
  }
+
+ .bookshow-button {
+    margin: 20px;
+    font-weight: bold;
+  }
  
