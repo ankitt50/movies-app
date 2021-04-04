@@ -87,3 +87,8 @@
       margin-right: 32px;
     }
   }
+
+  .artist-poster{
+    height: 100%;
+    width: auto;
+}
